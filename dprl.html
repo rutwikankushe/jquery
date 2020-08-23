@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bind SELECT Element with JSON using JavaScript</title>
+    <style>
+    	select, p, input {
+        	font: 1em Calibri;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type="button" 
+            style="margin:10px 0;" 
+                onclick="populateSelect()" 
+                    value="Click to Populate SELECT with JSON" />
+    </p>
+
+    <!--The SELECT element.-->
+    <select id="sel" onchange="show(this)">
+        <option value="">-- Select --</option>
+    </select>
+
+    <p id="msg"></p>
+
+    
+</body>
+
+<script>
+    function populateSelect() {
+        // THE JSON ARRAY.
+        var birds = [
+            {
+                "ID": "2.55",
+                "short_name": "A1",
+                "Bird_Name": "Won Ton Soup with Chicken"
+               
+            },
+            {
+                "ID": "2.25",
+                "short_name": "A2",
+                "Bird_Name": "Egg Drop Soup"
+            },
+            {
+                "ID": "2.25",
+                "short_name": "A3",
+                "Bird_Name": "Chicken Corn Soup"
+            },
+                        {
+                "ID": "2.75",
+                "short_name": "A4",
+                "Bird_Name": "Hot and Sour Soup"
+            },
+                        {
+                "ID": "2.55",
+                "short_name": "A5",
+                "Bird_Name": "Egg Drop with Won Ton Soup"
+            },
+        ];
+
+        var ele = document.getElementById('sel');
+        for (var i = 0; i < birds.length; i++) {
+            // POPULATE SELECT ELEMENT WITH JSON.
+            ele.innerHTML = ele.innerHTML +
+                '<option value="' + birds[i]['ID'] + '">' + birds[i]['Bird_Name'] + '</option>';
+        }
+    }
+
+    function show(ele) {
+        // GET THE SELECTED VALUE FROM <select> ELEMENT AND SHOW IT.
+        var msg = document.getElementById('msg');
+        msg.innerHTML = 'Description: <b>' + ele.options[ele.selectedIndex].text + '</b> </br>' +
+            'price: <b>' + ele.value + '</b>';
+    }
+</script>
+</html>
